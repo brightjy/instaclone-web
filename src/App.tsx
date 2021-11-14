@@ -1,16 +1,14 @@
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { Link } from "react-router-dom";
+import Home from "./screens/Home";
+import Login from "./screens/Login";
 
-function App() {
-  const isLoggedIn = false;
+export default function App() {
+  const isLoggedIn = true;
   return (
-    <Router>
-      <Routes>
-        <Route path="/">
-          {isLoggedIn ? "HOME" : "Login"}
-        </Route>
-      </Routes>
-    </Router>
+    <div>
+      <Link to="/">
+      { isLoggedIn ? <Home /> : <Login /> }
+      </Link>
+    </div>
   );
 }
-
-export default App;
