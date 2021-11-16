@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { MouseEventHandler } from "react";
 
-function Login() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+interface ILoginProps {
+  setIsLoggedIn: boolean;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+}
+
+function Login<ILoginProps>({ setIsLoggedIn }) {
   return (
     <div>
       <h1>Login</h1>
