@@ -1,16 +1,13 @@
-import { useState } from "react";
+import { useReactiveVar } from "@apollo/client";
+import { isLoggedInVar } from "./apollo";
 import Home from "./screens/Home";
 import Login from "./screens/Login";
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const isLoggedIn = useReactiveVar(isLoggedInVar);
   return (
     <div>
-        { isLoggedIn ? (
-            <Home setIsLoggedIn={ setIsLoggedIn }/>
-          ) : (
-            <Login setIsLoggedIn={ setIsLoggedIn } />
-          )}
+        { isLoggedIn ? <Home /> : <Login />}
     </div>
   );
 }
