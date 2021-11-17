@@ -1,5 +1,10 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, DefaultTheme } from "styled-components";
 import reset from "styled-reset";
+
+export const ourTheme: DefaultTheme = {
+  bgColor: "black",
+  fontClor: "blue",
+}
 
 export const GlobalStyles = createGlobalStyle`
   ${reset};
