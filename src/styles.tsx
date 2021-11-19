@@ -3,7 +3,9 @@ import reset from "styled-reset";
 
 export const ourTheme: DefaultTheme = {
   bgColor: "#f1f1f1",
-  fontClor: "blue",
+  fontColor: "blue",
+  accentColor: "#0095f6",
+  borderColor: "rgb(219, 219, 219)",
 }
 
 export const GlobalStyles = createGlobalStyle`
@@ -17,6 +19,8 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background-color: #FAFAFA;
     font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(38, 38, 38);
   };
   a {
     text-decoration: none;
@@ -24,8 +28,8 @@ export const GlobalStyles = createGlobalStyle`
 `;
 
 export const lightTheme = {
-  fontColor: "#2c2c2c",
-  bgColor: "#f2f2f2",
+  blue: "#0095f6",
+  borderColor: "rgb(219, 219, 219)",
 };
 
 export const darkTheme = {
