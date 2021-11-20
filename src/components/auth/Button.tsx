@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SButton = styled.input`
+const Button = styled.input`
   width: 100%;
   border-radius: 3px;
   border: none;
@@ -11,9 +11,4 @@ const SButton = styled.input`
   padding: 8px 0px;
   font-weight: bold;
 `;
-
-function Button(props) {
-  return <SButton {...props} />;
-}
-
 export default Button;
