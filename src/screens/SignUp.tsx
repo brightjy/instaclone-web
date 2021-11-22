@@ -8,6 +8,7 @@ import FormBox from "../components/auth/FormBox";
 import BottomBox from "../components/auth/BottomBox";
 import styled from "styled-components";
 import { FatLink } from "../components/common/Common";
+import { Helmet } from "react-helmet-async";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -24,6 +25,9 @@ const Subtitle = styled(FatLink)`
 function SignUp() {
   return (
     <AuthLayout>
+      <Helmet>
+        <title>Sign up | Catstagram </title>
+      </Helmet>
       <FormBox>
         <HeaderContainer>
           <FontAwesomeIcon icon={faCat} size="3x"/>

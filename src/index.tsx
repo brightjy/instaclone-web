@@ -6,18 +6,21 @@ import SignUp from './screens/SignUp';
 import routes from './routes';
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles, ourTheme } from "./styles";
+import { HelmetProvider } from 'react-helmet-async';
 
 const rootElement =  document.getElementById('root');
 render(
-  <ThemeProvider theme={ourTheme}>
-  <GlobalStyles />
-  <Router>
-    <Routes>
-      <Route path={routes.home} element={<App />} />
-      <Route path={routes.signUp} element={<SignUp />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  </Router>
-  </ThemeProvider>,
+  <HelmetProvider>
+    <ThemeProvider theme={ourTheme}>
+    <GlobalStyles />
+    <Router>
+      <Routes>
+        <Route path={routes.home} element={<App />} />
+        <Route path={routes.signUp} element={<SignUp />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
+    </ThemeProvider>
+  </HelmetProvider>,
   rootElement
 );

@@ -10,6 +10,7 @@ import Input from "../components/auth/Input";
 import FormBox from "../components/auth/FormBox";
 import BottomBox from "../components/auth/BottomBox";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const FacebookLogin = styled.div`
   color: #385185;
@@ -37,15 +38,17 @@ function Login() {
   };
   return (
     <AuthLayout>
+      <Helmet>
+        <title>Login | Catstagram </title>
+      </Helmet>
       <FormBox>
         <div>
           <FontAwesomeIcon icon={faCat} size="3x"/>
         </div>
-        <form onSubmit={handleSubmit}>
-          {usernameError}
+        <form>
           <Input onChange={onUsernameChange} value={username} type="text" placeholder="Username" />
           <Input type="password" placeholder="Password" />
-          <Button type="submit" value="Log in" disabled={username !== "" && username.length >= 10}/>
+          <Button type="submit" value="Log in" />
         </form>
         <Separator/>
         <FacebookLogin>
