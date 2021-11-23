@@ -10,5 +10,6 @@ const Button = styled.input`
   text-align: center;
   padding: 8px 0px;
   font-weight: bold;
+  opacity: ${props => props.disabled ? "0.3" : "1.0"};
 `;
 export default Button;
