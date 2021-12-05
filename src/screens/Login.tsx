@@ -15,6 +15,7 @@ import FormError from "../components/auth/FormError";
 import { gql, useMutation } from '@apollo/client';
 import { login, loginVariables } from "../__generated__/login";
 import { logUserIn } from "../apollo";
+import { useLocation } from "react-router-dom";
 
 const FacebookLogin = styled.div`
   color: #385185;
@@ -23,6 +24,18 @@ const FacebookLogin = styled.div`
     font-weight: bold;
   }
 `;
+
+interface IForm {
+  userName: string;
+  password: string;
+  result: string;
+};
+
+const Notification = styled.div`
+  margin-top: 10px;
+  color: #27ae60;
+`;
+
 const LOGIN_MUTATION = gql`
   mutation login($userName: String!, $password: String!) {
     login(userName: $userName, password: $password) {
@@ -31,23 +44,18 @@ const LOGIN_MUTATION = gql`
       error
     }
   }
-`
-interface IForm {
-  userName: string;
-  password: string;
-  result: string;
-}
+`;
 
 function Login() {
-  const { register, 
-          handleSubmit, 
-          formState, 
-          getValues, 
-          setError,
-          clearErrors 
-        } = useForm<IForm>({
-              mode: "onChange",
-            });
+  const location = useLocation();
+  const { register, handleSubmit, formState, setError, clearErrors } 
+    = useForm<IForm>({
+        mode: "onChange",
+        defaultValues: {
+          userName: location?.state?.userName || "",
+          password: location?.state?.password || ""
+        }
+      });
   const onCompleted = (data) => {
     const {login: {ok, error, authorization}} = data;
     if(!ok) {
@@ -59,14 +67,15 @@ function Login() {
       logUserIn(authorization);
     }
   };
-  const [login, {loading}] = useMutation<login, loginVariables>(LOGIN_MUTATION, {
-    onCompleted,
-  });
+  const [login, {loading}] 
+    = useMutation<login, loginVariables>(LOGIN_MUTATION, {
+      onCompleted,
+    });
   const onSubmitValid:SubmitHandler<IForm> = (data) => {
     if(loading) {
       return;
     }
-    const { userName, password } = getValues();
+    const { userName, password } = data;
     login({
       variables: { userName, password },
     });
@@ -83,6 +92,7 @@ function Login() {
         <div>
           <FontAwesomeIcon icon={ faCat } size="3x"/>
         </div>
+        <Notification>{location?.state?.message}</Notification>
         <form onSubmit={ handleSubmit(onSubmitValid) }>
           <Input 
             {...register("userName", {

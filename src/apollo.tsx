@@ -9,9 +9,12 @@ export const logUserIn = (authorization) => {
   isLoggedInVar(true);
 }
 
-export const logUserOut = () => {
+export const logUserOut = (navigate) => {
   localStorage.removeItem(AUTH);
-  isLoggedInVar(false);
+  if(!navigate) { 
+    navigate("");
+  }
+  window.location.reload();
 }
 
 export const darkModeVar = makeVar(false);    // 다크모드
