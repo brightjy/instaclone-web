@@ -2,11 +2,23 @@ import { createGlobalStyle, DefaultTheme } from "styled-components";
 import reset from "styled-reset";
 
 export const ourTheme: DefaultTheme = {
-  bgColor: "#f1f1f1",
-  fontColor: "blue",
+  bgColor: "#fafafa",
+  fontColor: "rgb(38, 38, 38)",
   accentColor: "#0095f6",
   borderColor: "rgb(219, 219, 219)",
 }
+
+export const lightTheme = {
+  accentColor: "#0095f6",
+  borderColor: "rgb(219, 219, 219)",
+  bgColor: "#fafafa",
+  fontColor: "rgb(38, 38, 38)"
+};
+
+export const darkTheme = {
+  bgColor: "#2c2c2c",
+  fontColor: "#f2f2f2",
+};
 
 export const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -17,22 +29,13 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   };
   body {
-    background-color: #FAFAFA;
+    background-color: ${props => props.theme.bgColor};
     font-size: 14px;
     font-family: 'Open Sans', sans-serif;
-    color: rgb(38, 38, 38);
+    color: ${props => props.theme.fontColor};
   };
   a {
     text-decoration: none;
   };
 `;
 
-export const lightTheme = {
-  blue: "#0095f6",
-  borderColor: "rgb(219, 219, 219)",
-};
-
-export const darkTheme = {
-  fontColor: "#f2f2f2",
-  bgColor: "#2c2c2c",
-};
