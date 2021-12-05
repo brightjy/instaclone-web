@@ -7,20 +7,24 @@ import routes from './routes';
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles, ourTheme } from "./styles";
 import { HelmetProvider } from 'react-helmet-async';
+import { ApolloProvider } from '@apollo/client';
+import { client } from './apollo';
 
 const rootElement =  document.getElementById('root');
 render(
-  <HelmetProvider>
-    <ThemeProvider theme={ourTheme}>
-    <GlobalStyles />
-    <Router>
-      <Routes>
-        <Route path={routes.home} element={<App />} />
-        <Route path={routes.signUp} element={<SignUp />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
-    </ThemeProvider>
-  </HelmetProvider>,
+  <ApolloProvider client={client}>
+    <HelmetProvider>
+      <ThemeProvider theme={ourTheme}>
+      <GlobalStyles />
+      <Router>
+        <Routes>
+          <Route path={routes.home} element={<App />} />
+          <Route path={routes.signUp} element={<SignUp />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
+      </ThemeProvider>
+    </HelmetProvider>
+  </ApolloProvider>,
   rootElement
 );
